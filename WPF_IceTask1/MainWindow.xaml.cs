@@ -18,17 +18,20 @@ namespace WPF_IceTask1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private NodeManager generateNode;
+        private Node Head;
         public MainWindow()
         {
             InitializeComponent();
-            NodeManager generateNode = new NodeManager();
-            Node Head = generateNode.Head; //assigning head to the top of added Nodes;
+            generateNode = new NodeManager();
+            //assigning head to the top of added Nodes;
             PopulateList(generateNode);
-            Console.WriteLine("Number of nodes: "+CountNodes(Head));
-            Console.WriteLine("Entire linked list: "+DisplayEntireList(Head));
-            SortList(Head);
-            Console.WriteLine("Sorted entire list: "+ DisplayEntireList(Head));
-            Console.WriteLine("Current node: "+DisplaySingleNode(Head));
+            Head = generateNode.Head;
+            txtNumOfNodesDisplay.Text = CountNodes(Head).ToString();
+            //Console.WriteLine("Entire linked list: "+DisplayEntireList(Head));
+            //SortList(Head);
+            //Console.WriteLine("Sorted entire list: "+ DisplayEntireList(Head));
+            //Console.WriteLine("Current node: "+DisplaySingleNode(Head));
         }
 
             //Populate linkedlist
@@ -69,7 +72,7 @@ namespace WPF_IceTask1
             public static int CountNodes(Node Head)
             {
                 Node current = Head;
-                int counter = 0; 
+                int counter = 1; 
                 while(current != null)
                 {
                     counter++;
@@ -78,11 +81,11 @@ namespace WPF_IceTask1
                 return counter;
             }
             //Sort out linkedlist
-            public static void SortList(Node Head)
+            public static string SortList(Node Head)
             {
                 Node current = Head;
                 Node largestNode = Head;
-                //int temp = 0;
+                string sortedList = "";
 
                 for (int i = 0; i < CountNodes(Head); i++)
                 {
@@ -96,7 +99,9 @@ namespace WPF_IceTask1
 
                         }
                     }
+                    sortedList = current+"\n";
                 }
+                return sortedList;
             }
             //Display full linked list
             public static string DisplayEntireList(Node Head)
@@ -105,14 +110,14 @@ namespace WPF_IceTask1
                 string fullList = "";
                 while(current != null ) 
                 {
-                    fullList = "current+\n";
+                    fullList = "current\n";
                     current = current.next;
                 }
                 return fullList;    
             }
 
-            //Display Single node in list
-            public static Node DisplaySingleNode(Node Head)
+            //Display previous single node in list
+            public static Node DisplayNextSingleNode(Node Head)
             {
                 Node current = Head;
                 bool selectNext = false;
@@ -123,11 +128,7 @@ namespace WPF_IceTask1
                 current = current.next;
                 Console.WriteLine(current);
             }
-            if(selectPrevious == true)
-            {
-                current = current.previous;
-                Console.WriteLine(current);
-            }
+           
             else 
             { 
                 return null; 
@@ -135,6 +136,50 @@ namespace WPF_IceTask1
 
                 return current;
             }
+
+        //Display next single node in list
+        public static Node DisplayPreviousSingleNode(Node Head)
+        {
+            Node current = Head;
+            bool selectNext = false;
+            bool selectPrevious = false;
+
+            if (selectPrevious == true)
+            {
+                current = current.previous;
+                Console.WriteLine(current);
+            }
+            else
+            {
+                return null;
+            }
+
+            return current;
+        }
+
+        //GUI Buttons that call methods
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayPreviousSingleNode(Head);
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            //rtSingleNodeDisplay.Document.Blocks.Add(DisplayNextSingleNode(Head));
+
+        }
+
+        private void btnGetList_Click(object sender, RoutedEventArgs e)
+        {
+            lboxUnsortedListDisplay.Items.Clear();
+            lboxUnsortedListDisplay.Items.Add(DisplayEntireList(Head));
+        }
+
+        private void btnSortList_Click(object sender, RoutedEventArgs e)
+        {
+            lboxUnsortedListDisplay.Items.Clear();
+            lboxUnsortedListDisplay.Items.Add(SortList(Head));
+        }
 
     }
 }
