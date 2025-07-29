@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace WPF_IceTask1
 {
@@ -72,11 +73,11 @@ namespace WPF_IceTask1
             public static int CountNodes(Node Head)
             {
                 Node current = Head;
-                int counter = 1; 
-                while(current != null)
+                int counter = 0; 
+                while(current.next != null)
                 {
-                    counter++;
                     current = current.next;
+                    counter++;
                 }
                 return counter;
             }
@@ -89,17 +90,16 @@ namespace WPF_IceTask1
 
                 for (int i = 0; i < CountNodes(Head); i++)
                 {
-                    for (int j = 0; j < CountNodes(current); j++)
+                    for (int j = 0; j < CountNodes(Head); j++)
                     {
                         if (current.value > current.next.value)
                         {
                             Node temp = current;
                             current = current.next;
                             current.next = temp;
-
                         }
                     }
-                    sortedList = current+"\n";
+                    sortedList = current.value+"\n";
                 }
                 return sortedList;
             }
@@ -108,9 +108,9 @@ namespace WPF_IceTask1
             {
                 Node current = Head;
                 string fullList = "";
-                while(current != null ) 
+                for(int i = 0;i < CountNodes(Head);i++) 
                 {
-                    fullList = "current\n";
+                    fullList = ($"{current.value}");
                     current = current.next;
                 }
                 return fullList;    
@@ -160,25 +160,68 @@ namespace WPF_IceTask1
         //GUI Buttons that call methods
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            DisplayPreviousSingleNode(Head);
+            Node current = Head;
+
+            if (current.previous != null)
+            {
+                current = current.previous;
+                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"Previous node of {current.previous} is {current.value}")));
+            }
+
+            else
+            {
+                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"No previous node found.")));
+            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            //rtSingleNodeDisplay.Document.Blocks.Add(DisplayNextSingleNode(Head));
+            Node current = Head;
+
+            if (current.next != null)
+            {
+                current = current.next;
+                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"Next node of {current.previous} is {current.value}")));
+            }
+
+            else
+            {
+                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"No next node found.")));
+            }
 
         }
 
         private void btnGetList_Click(object sender, RoutedEventArgs e)
         {
             lboxUnsortedListDisplay.Items.Clear();
-            lboxUnsortedListDisplay.Items.Add(DisplayEntireList(Head));
+            Node current = Head;
+            string fullList = "";
+            for (int i = 0; i < CountNodes(Head); i++)
+            {
+                lboxUnsortedListDisplay.Items.Add($"{current.value}");
+                current = current.next;
+            }
         }
 
         private void btnSortList_Click(object sender, RoutedEventArgs e)
         {
             lboxUnsortedListDisplay.Items.Clear();
-            lboxUnsortedListDisplay.Items.Add(SortList(Head));
+            Node current = Head;
+            Node largestNode = Head;
+
+            for (int i = 0; i < CountNodes(Head); i++)
+            {
+                for (int j = 0; j < CountNodes(Head); j++)
+                {
+                    if (current.value > current.next.value)
+                    {
+                        Node temp = current;
+                        current = current.next;
+                        current.next = temp;
+                    }
+                }
+                lboxUnsortedListDisplay.Items.Add($"{current}");
+            }
         }
 
     }

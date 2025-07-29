@@ -12,7 +12,7 @@ namespace WPF_IceTask1
         public Node next;
         public Node previous;
 
-        public Node(int value, string? content)
+        public Node(int value, string content)
         {
             this.value = value;
         }

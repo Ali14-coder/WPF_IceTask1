@@ -11,7 +11,7 @@
         <ListBox x:Name="lboxUnsortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="37,172,338,61"/>
         <!--<ListBox x:Name="lboxSortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="307,172,298,61"/>-->
         <Label x:Name="lblHeading" Content="Script reading" HorizontalAlignment="Left" Margin="328,40,0,0" VerticalAlignment="Top" Width="134"/>
-        <Label x:Name="lblNumOfNodes" Content="Number of nodes:" HorizontalAlignment="Left" Margin="61,92,0,0" VerticalAlignment="Top" Width="116" Height="22"/>
+        <Label x:Name="lblNumOfNodes" Content="Number of nodes:" HorizontalAlignment="Left" Margin="61,92,0,0" VerticalAlignment="Top" Width="129" Height="28"/>
         <Label x:Name="lblUnsortedList" Content="Entire list" HorizontalAlignment="Left" Margin="182,136,0,0" VerticalAlignment="Top" Width="134"/>
         <!--<Label x:Name="lblSortedList" Content="Sorted list" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" Width="134"/>-->
         <Label x:Name="lbSingleNode" Content="Single node" HorizontalAlignment="Left" Margin="589,136,0,0" VerticalAlignment="Top" Width="134"/>
