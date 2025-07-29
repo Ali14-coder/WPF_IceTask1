@@ -44,7 +44,7 @@ namespace WPF_IceTask1
                 generateNode.Add(
                     3, "With every line of code mastered, Alex gains experience points, levelling up and unlocking new abilities like Debugging Dash and Algorithmic Aura.");
                 generateNode.Add(
-                    4, "The Firewall Fortress looms ahead, its defences formidable, but Alex's mastery of cybersecurity allows them to breach the walls with a series of perfectly timed hacks.");
+                    13, "The Firewall Fortress looms ahead, its defences formidable, but Alex's mastery of cybersecurity allows them to breach the walls with a series of perfectly timed hacks.");
                 generateNode.Add(
                     11, "Celebrated as a digital hero, Alex stands at the forefront of innovation, using the knowledge gained to create groundbreaking applications that shape the future of technology.");
                 generateNode.Add(
@@ -70,7 +70,7 @@ namespace WPF_IceTask1
             public static int CountNodes(Node Head)
             {
                 Node current = Head;
-                int counter = 0; 
+                int counter = 1; 
                 while(current.next != null)
                 {
                     current = current.next;
@@ -109,12 +109,13 @@ namespace WPF_IceTask1
             {
                 current = current.previous;
                 txtSingleNodeDisplay.Text = $"Previous node of {current.previous.value} \nis: {current.value}";
-
-                if(current.previous == null)
-                {
-                    txtSingleNodeDisplay.Text = $"No previous node found.\nCurrent node is:\n{current.value}";
-                }
             }
+
+            else if (current.previous == null)
+            {
+                txtSingleNodeDisplay.Text = $"No previous node found.\nCurrent node is:\n{current.value}";
+            }
+            
 
         }
 
@@ -126,13 +127,14 @@ namespace WPF_IceTask1
             {
                 current = current.next;
                 txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}";
-
-
-                if(current.next == null)
-                {
-                    txtSingleNodeDisplay.Text = $"No next node found.\nCurrent node is:\n{current.value}";
-                }
             }
+
+
+            else if (current.next == null)
+            {
+                txtSingleNodeDisplay.Text = $"No next node found.\nCurrent node is:\n{current.value}";
+            }
+            
 
         }
 
@@ -152,23 +154,31 @@ namespace WPF_IceTask1
         {
             lboxUnsortedListDisplay.Items.Clear();
             Node current = Head;
-            Node largestNode = Head;
+            Node currentSort;
 
             for (int i = 0; i < CountNodes(Head); i++)
             {
+                currentSort = Head;
                 for (int j = 0; j < CountNodes(Head); j++)
                 {
-                    if (current.value > current.next.value)
+                    if (currentSort.value > currentSort.next.value)
                     {
-                        Node temp = current;
-                        current = current.next;
-                        current.next = temp;
+                        Node tempNode = currentSort;
+                        currentSort = currentSort.next;
+                        currentSort.next = tempNode;
                     }
-                    
+                    currentSort = currentSort.next;
                 }
-                lboxUnsortedListDisplay.Items.Add($"{current.value}");
+                //lboxUnsortedListDisplay.Items.Add($"{current.value}");
             }
-            
+
+            //Displaying the sorted order
+            while (current.next != null)
+            {
+                lboxUnsortedListDisplay.Items.Add($"{current.value}");
+                current = current.next;
+            }
+
         }
 
     }
