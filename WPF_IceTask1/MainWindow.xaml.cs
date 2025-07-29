@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics.Metrics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -58,10 +59,33 @@ namespace WPF_IceTask1
             Node Head = generateNode.Head; //assigning head to the top of added Nodes
         }
         
-            //Sort out linkedlist
-            public string sortList()
+        //Node count method
+        public int CountNodes(Node Head)
+        {
+            Node current = Head;
+            int counter = 0; 
+            while(current != null)
             {
+                counter++;
+                current = current.next;
+            }
+            return counter;
+        }
+            //Sort out linkedlist
+            public void sortList(Node Head)
+            {
+            Node current = Head;
+            Node largestNode = Head;
 
+                for (int i = 0; i<CountNodes(Head); i++)
+            {
+                if(current.value > current.next.value)
+                {
+                    largestNode = current;
+                    current = current.next;
+                    
+                }
+            }
             }
             //Display full linked list
             public void displayEntireList()
