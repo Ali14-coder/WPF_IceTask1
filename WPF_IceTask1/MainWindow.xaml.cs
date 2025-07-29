@@ -21,20 +21,17 @@ namespace WPF_IceTask1
     {
         private NodeManager generateNode;
         private Node Head;
+        private Node current;
         public MainWindow()
         {
             InitializeComponent();
             generateNode = new NodeManager();
-            //assigning head to the top of added Nodes;
             PopulateList(generateNode);
             Head = generateNode.Head;
+            current = Head;
             txtNumOfNodesDisplay.Text = CountNodes(Head).ToString();
-            //Console.WriteLine("Entire linked list: "+DisplayEntireList(Head));
-            //SortList(Head);
-            //Console.WriteLine("Sorted entire list: "+ DisplayEntireList(Head));
-            //Console.WriteLine("Current node: "+DisplaySingleNode(Head));
-        }
 
+        }
             //Populate linkedlist
             public static void PopulateList(NodeManager generateNode) 
             {
@@ -103,90 +100,38 @@ namespace WPF_IceTask1
                 }
                 return sortedList;
             }
-            //Display full linked list
-            public static string DisplayEntireList(Node Head)
-            {
-                Node current = Head;
-                string fullList = "";
-                for(int i = 0;i < CountNodes(Head);i++) 
-                {
-                    fullList = ($"{current.value}");
-                    current = current.next;
-                }
-                return fullList;    
-            }
 
-            //Display previous single node in list
-            public static Node DisplayNextSingleNode(Node Head)
-            {
-                Node current = Head;
-                bool selectNext = false;
-                bool selectPrevious = false;
-
-            if (selectNext == true)
-            {
-                current = current.next;
-                Console.WriteLine(current);
-            }
-           
-            else 
-            { 
-                return null; 
-            }
-
-                return current;
-            }
-
-        //Display next single node in list
-        public static Node DisplayPreviousSingleNode(Node Head)
-        {
-            Node current = Head;
-            bool selectNext = false;
-            bool selectPrevious = false;
-
-            if (selectPrevious == true)
-            {
-                current = current.previous;
-                Console.WriteLine(current);
-            }
-            else
-            {
-                return null;
-            }
-
-            return current;
-        }
 
         //GUI Buttons that call methods
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            Node current = Head;
-
             if (current.previous != null)
             {
                 current = current.previous;
-                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"Previous node of {current.previous} is {current.value}")));
+                txtSingleNodeDisplay.Text = $"Previous node of {current.previous.value} \nis: {current.value}";
+
+                if(current.previous == null)
+                {
+                    txtSingleNodeDisplay.Text = $"No previous node found.\nCurrent node is:\n{current.value}";
+                }
             }
 
-            else
-            {
-                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"No previous node found.")));
-            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            Node current = Head;
-
+            //Had to remove the Head node because it reset every time i clicked the next button,
+            //which caused it to assign head as 6, and 'next' was always 10, and prev was always nonexsistant.
             if (current.next != null)
             {
                 current = current.next;
-                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"Next node of {current.previous} is {current.value}")));
-            }
+                txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}";
 
-            else
-            {
-                rtSingleNodeDisplay.Document.Blocks.Add(new Paragraph(new Run($"No next node found.")));
+
+                if(current.next == null)
+                {
+                    txtSingleNodeDisplay.Text = $"No next node found.\nCurrent node is:\n{current.value}";
+                }
             }
 
         }
@@ -219,9 +164,11 @@ namespace WPF_IceTask1
                         current = current.next;
                         current.next = temp;
                     }
+                    
                 }
-                lboxUnsortedListDisplay.Items.Add($"{current}");
+                lboxUnsortedListDisplay.Items.Add($"{current.value}");
             }
+            
         }
 
     }
