@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPF_IceTask1
 {
-    class Node
+    public class Node //made this class public so that it is accessible to the main window
     {
         public int value;
         public Node next;

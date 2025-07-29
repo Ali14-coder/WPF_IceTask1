@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPF_IceTask1
 {
-    class NodeManager
+    public class NodeManager
     {
         public Node Head;
 
