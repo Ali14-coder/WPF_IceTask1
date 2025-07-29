@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TextBox x:Name="txtNumOfNodesDisplay" HorizontalAlignment="Left" Margin="208,66,0,0" TextWrapping="Wrap" Text="Node number" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lboxUnsortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="42,142,565,66"/>
+        <ListBox x:Name="lboxSortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="312,142,293,66"/>
+        <Label x:Name="lblHeading" Content="MainHeading" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="134"/>
+        <Label x:Name="lblNumOfNodes" Content="Number of nodes:" HorizontalAlignment="Left" Margin="66,62,0,0" VerticalAlignment="Top" Width="96" Height="22"/>
+        <Label x:Name="lblUnsortedList" Content="Entire list (unsorted)" HorizontalAlignment="Left" Margin="66,106,0,0" VerticalAlignment="Top" Width="134"/>
+        <Label x:Name="lblSortedList" Content="Sorted list" HorizontalAlignment="Left" Margin="338,106,0,0" VerticalAlignment="Top" Width="134"/>
+        <Label x:Name="lbSingleNode" Content="Single node" HorizontalAlignment="Left" Margin="594,106,0,0" VerticalAlignment="Top" Width="134"/>
+        <Button x:Name="btnPrevious" Content="Previous" HorizontalAlignment="Left" Margin="553,245,0,0" VerticalAlignment="Top"/>
+        <RichTextBox x:Name="rtSingleNodeDisplay" Margin="553,142,31,217">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Single node displayed here"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="729,245,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
