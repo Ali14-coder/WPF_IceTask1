@@ -32,8 +32,8 @@ namespace WPF_IceTask1
             txtNumOfNodesDisplay.Text = CountNodes(Head).ToString();
 
         }
-            //Populate linkedlist
-            public static void PopulateList(NodeManager generateNode) 
+        //Populate linkedlist
+        public static void PopulateList(NodeManager generateNode) 
             {
                 //Adding a value to the node
                 generateNode.Add(
@@ -66,8 +66,8 @@ namespace WPF_IceTask1
 
             }
 
-            //Node count method
-            public static int CountNodes(Node Head)
+        //Node count method
+        public static int CountNodes(Node Head)
             {
                 Node current = Head;
                 int counter = 1; 
