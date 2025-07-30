@@ -79,64 +79,9 @@ namespace WPF_IceTask1
                 return counter;
             }
 
-        //GUI Buttons that call methods
-        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        public static void SortList(Node Head)
         {
-            if (current.previous != null)
-            {
-                current = current.previous;
-                txtSingleNodeDisplay.Text = $"Previous node of {current.value} \nis: {current.previous.value}: \n{current.previous.contents}";
-            }
-
-            else if (current.previous == null)
-            {
-                txtSingleNodeDisplay.Text = $"No previous node found for:\n{current.value}: \n {current.contents}";
-            }
-
-
-        }
-
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            //Had to remove the Head node because it reset every time i clicked the next button,
-            //which caused it to assign head as 6, and 'next' was always 10, and prev was always nonexsistant.
-            if (current.next != null)
-            {
-                current = current.next;
-                txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}: \n{current.contents}";
-            }
-
-
-            else if (current.next == null)
-            {
-                txtSingleNodeDisplay.Text = $"No next node found for:\n{current.value}: \n{current.contents}";
-            }
-
-
-        }
-
-        private void btnGetList_Click(object sender, RoutedEventArgs e)
-        {
-            lboxListDisplay.Items.Clear();
-            Node current = Head;
-            string fullList = "";
-            for (int i = 0; i < CountNodes(Head); i++)
-            {
-                lboxListDisplay.Items.Add($"{current.value}: {current.contents}\r");
-                current = current.next;
-            }
-        }
-
-        private void btnSortList_Click(object sender, RoutedEventArgs e)
-        {
-            lboxListDisplay.Items.Clear();
-            
             bool swapped;
-
-            if (Head == null || Head.next == null) //Checks whether there is another node ot if there is a head 
-            {
-                lboxListDisplay.Items.Add("No nodes to sort.");
-            }
 
             do
             {
@@ -163,15 +108,76 @@ namespace WPF_IceTask1
                 }
             } while (swapped);
 
-            //Displaying the sorted order
+        }
+
+        //GUI Buttons that call methods
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            SortList(Head);
+            if (current.previous != null)
+            {
+                current = current.previous;
+                txtSingleNodeDisplay.Text = $"Previous node of {current.value} \nis: {current.previous.value}: \n{current.previous.contents}";
+            }
+
+            else if (current.previous == null)
+            {
+                txtSingleNodeDisplay.Text = $"No previous node found for:\n{current.value}: \n {current.contents}";
+            }
+
+
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            SortList(Head);
+            //Had to remove the Head node because it reset every time i clicked the next button,
+            //which caused it to assign head as 6, and 'next' was always 10, and prev was always nonexsistant.
+            if (current.next != null)
+            {
+                current = current.next;
+                txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}: \n{current.contents}";
+            }
+
+            else if (current.next == null)
+            {
+                txtSingleNodeDisplay.Text = $"No next node found for:\n{current.value}: \n{current.contents}";
+            }
+
+
+        }
+
+        private void btnGetList_Click(object sender, RoutedEventArgs e)
+        {
+            lboxListDisplay.Items.Clear();
+            Node current = Head;
+            string fullList = "";
+            for (int i = 0; i < CountNodes(Head); i++)
+            {
+                lboxListDisplay.Items.Add($"{current.value}: {current.contents}\r");
+                current = current.next;
+            }
+        }
+
+        private void btnSortList_Click(object sender, RoutedEventArgs e)
+        {
+            lboxListDisplay.Items.Clear();
+            
+            if (Head == null || Head.next == null) //Checks whether there is another node ot if there is a head 
+            {
+                lboxListDisplay.Items.Add("No nodes to sort.");
+            }
+            SortList(Head);
+
             Node currentDisplay = Head;
             while (currentDisplay.next != null)
             {
                 lboxListDisplay.Items.Add($"{currentDisplay.value}: {currentDisplay.contents}\r");
                 currentDisplay = currentDisplay.next;
             }
-
-}
-
+            
+        }
+       
+        
     }
 }
