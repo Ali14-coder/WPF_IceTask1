@@ -130,13 +130,20 @@ namespace WPF_IceTask1
         private void btnSortList_Click(object sender, RoutedEventArgs e)
         {
             lboxListDisplay.Items.Clear();
-            Node current = Head;
-            Node currentSort;
+            
+            bool swapped;
 
-            for (int i = 0; i < CountNodes(Head); i++)
+            if (Head == null || Head.next == null) //Checks whether there is another node ot if there is a head 
             {
-                currentSort = Head;
-                for (int j = 0; j < CountNodes(Head); j++)
+                lboxListDisplay.Items.Add("No nodes to sort.");
+            }
+
+            do
+            {
+                swapped = false;
+                Node currentSort = Head;
+
+                while (currentSort.next != null)
                 {
                     if (currentSort.value > currentSort.next.value)
                     {
@@ -144,35 +151,27 @@ namespace WPF_IceTask1
                         int tempValue = currentSort.value;
                         string tempContents = currentSort.contents;
 
-
                         currentSort.value = currentSort.next.value;
                         currentSort.contents = currentSort.next.contents;
 
                         currentSort.next.value = tempValue;
                         currentSort.next.contents = tempContents;
 
-                        //original method but setting the previous and next Node
-                        //current = current.previous;
-                        //Node tempNode = currentSort;
-
-                        //currentSort = currentSort.next;
-
-                        //currentSort.next = tempNode;
-
+                        swapped = true;
                     }
                     currentSort = currentSort.next;
                 }
-                lboxListDisplay.Items.Add($"{current.value}: {current.contents}\r");
-            }
+            } while (swapped);
 
             //Displaying the sorted order
-            //while (current.next != null)
-            //{
-            //    lboxListDisplay.Items.Add($"{current.value}");
-            //    current = current.next;
-            //}
+            Node currentDisplay = Head;
+            while (currentDisplay.next != null)
+            {
+                lboxListDisplay.Items.Add($"{currentDisplay.value}: {currentDisplay.contents}\r");
+                currentDisplay = currentDisplay.next;
+            }
 
-        }
+}
 
     }
 }
