@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="txtNumOfNodesDisplay" HorizontalAlignment="Left" Margin="203,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <ListBox x:Name="lboxUnsortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="37,172,338,61"/>
+        <ListBox x:Name="lboxListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="37,172,338,61"/>
         <!--<ListBox x:Name="lboxSortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="307,172,298,61"/>-->
         <Label x:Name="lblHeading" Content="Script reading" HorizontalAlignment="Left" Margin="328,40,0,0" VerticalAlignment="Top" Width="134"/>
         <Label x:Name="lblNumOfNodes" Content="Number of nodes:" HorizontalAlignment="Left" Margin="61,92,0,0" VerticalAlignment="Top" Width="129" Height="28"/>

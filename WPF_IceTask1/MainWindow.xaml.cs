@@ -78,42 +78,19 @@ namespace WPF_IceTask1
                 }
                 return counter;
             }
-            //Sort out linkedlist
-            public static string SortList(Node Head)
-            {
-                Node current = Head;
-                Node largestNode = Head;
-                string sortedList = "";
-
-                for (int i = 0; i < CountNodes(Head); i++)
-                {
-                    for (int j = 0; j < CountNodes(Head); j++)
-                    {
-                        if (current.value > current.next.value)
-                        {
-                            Node temp = current;
-                            current = current.next;
-                            current.next = temp;
-                        }
-                    }
-                    sortedList = current.value+"\n";
-                }
-                return sortedList;
-            }
-
-
+            
         //GUI Buttons that call methods
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
             if (current.previous != null)
             {
                 current = current.previous;
-                txtSingleNodeDisplay.Text = $"Previous node of {current.previous.value} \nis: {current.value}";
+                txtSingleNodeDisplay.Text = $"Previous node of {current.value} \nis: {current.previous.value}";
             }
 
             else if (current.previous == null)
             {
-                txtSingleNodeDisplay.Text = $"No previous node found.\nCurrent node is:\n{current.value}";
+                txtSingleNodeDisplay.Text = $"No previous node found for:\n{current.value}";
             }
             
 
@@ -132,7 +109,7 @@ namespace WPF_IceTask1
 
             else if (current.next == null)
             {
-                txtSingleNodeDisplay.Text = $"No next node found.\nCurrent node is:\n{current.value}";
+                txtSingleNodeDisplay.Text = $"No next node found for:\n{current.value}";
             }
             
 
@@ -140,19 +117,19 @@ namespace WPF_IceTask1
 
         private void btnGetList_Click(object sender, RoutedEventArgs e)
         {
-            lboxUnsortedListDisplay.Items.Clear();
+            lboxListDisplay.Items.Clear();
             Node current = Head;
             string fullList = "";
             for (int i = 0; i < CountNodes(Head); i++)
             {
-                lboxUnsortedListDisplay.Items.Add($"{current.value}");
+                lboxListDisplay.Items.Add($"{current.value}");
                 current = current.next;
             }
         }
 
         private void btnSortList_Click(object sender, RoutedEventArgs e)
         {
-            lboxUnsortedListDisplay.Items.Clear();
+            lboxListDisplay.Items.Clear();
             Node current = Head;
             Node currentSort;
 
@@ -163,21 +140,37 @@ namespace WPF_IceTask1
                 {
                     if (currentSort.value > currentSort.next.value)
                     {
+                        ////must bubble sort the value and the contents within the node
+                        //int tempValue = currentSort.value;
+                        //string tempContents = currentSort.contents;
+
+
+                        //currentSort.value = currentSort.next.value;
+                        //currentSort.contents = currentSort.value.contents;
+
+                        //currentSort.next.value = tempValue;
+                        //currentSort.next.contents = tempContents;
+
+                        //original method but setting the previous and next Node
+                        //current = current.previous;
                         Node tempNode = currentSort;
+
                         currentSort = currentSort.next;
+                        
                         currentSort.next = tempNode;
+                        
                     }
                     currentSort = currentSort.next;
                 }
-                //lboxUnsortedListDisplay.Items.Add($"{current.value}");
+                lboxListDisplay.Items.Add($"{current.value}");
             }
 
             //Displaying the sorted order
-            while (current.next != null)
-            {
-                lboxUnsortedListDisplay.Items.Add($"{current.value}");
-                current = current.next;
-            }
+            //while (current.next != null)
+            //{
+            //    lboxListDisplay.Items.Add($"{current.value}");
+            //    current = current.next;
+            //}
 
         }
 
