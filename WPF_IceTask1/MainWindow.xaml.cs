@@ -78,21 +78,21 @@ namespace WPF_IceTask1
                 }
                 return counter;
             }
-            
+
         //GUI Buttons that call methods
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
             if (current.previous != null)
             {
                 current = current.previous;
-                txtSingleNodeDisplay.Text = $"Previous node of {current.value} \nis: {current.previous.value}";
+                txtSingleNodeDisplay.Text = $"Previous node of {current.value} \nis: {current.previous.value}: \n{current.previous.contents}";
             }
 
             else if (current.previous == null)
             {
-                txtSingleNodeDisplay.Text = $"No previous node found for:\n{current.value}";
+                txtSingleNodeDisplay.Text = $"No previous node found for:\n{current.value}: \n {current.contents}";
             }
-            
+
 
         }
 
@@ -103,15 +103,15 @@ namespace WPF_IceTask1
             if (current.next != null)
             {
                 current = current.next;
-                txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}";
+                txtSingleNodeDisplay.Text = $"Next node of {current.previous.value} \nis: {current.value}: \n{current.contents}";
             }
 
 
             else if (current.next == null)
             {
-                txtSingleNodeDisplay.Text = $"No next node found for:\n{current.value}";
+                txtSingleNodeDisplay.Text = $"No next node found for:\n{current.value}: \n{current.contents}";
             }
-            
+
 
         }
 
@@ -122,7 +122,7 @@ namespace WPF_IceTask1
             string fullList = "";
             for (int i = 0; i < CountNodes(Head); i++)
             {
-                lboxListDisplay.Items.Add($"{current.value}");
+                lboxListDisplay.Items.Add($"{current.value}: {current.contents}\r");
                 current = current.next;
             }
         }
@@ -140,29 +140,29 @@ namespace WPF_IceTask1
                 {
                     if (currentSort.value > currentSort.next.value)
                     {
-                        ////must bubble sort the value and the contents within the node
-                        //int tempValue = currentSort.value;
-                        //string tempContents = currentSort.contents;
+                        //must bubble sort the value and the contents within the node
+                        int tempValue = currentSort.value;
+                        string tempContents = currentSort.contents;
 
 
-                        //currentSort.value = currentSort.next.value;
-                        //currentSort.contents = currentSort.value.contents;
+                        currentSort.value = currentSort.next.value;
+                        currentSort.contents = currentSort.next.contents;
 
-                        //currentSort.next.value = tempValue;
-                        //currentSort.next.contents = tempContents;
+                        currentSort.next.value = tempValue;
+                        currentSort.next.contents = tempContents;
 
                         //original method but setting the previous and next Node
                         //current = current.previous;
-                        Node tempNode = currentSort;
+                        //Node tempNode = currentSort;
 
-                        currentSort = currentSort.next;
-                        
-                        currentSort.next = tempNode;
-                        
+                        //currentSort = currentSort.next;
+
+                        //currentSort.next = tempNode;
+
                     }
                     currentSort = currentSort.next;
                 }
-                lboxListDisplay.Items.Add($"{current.value}");
+                lboxListDisplay.Items.Add($"{current.value}: {current.contents}\r");
             }
 
             //Displaying the sorted order

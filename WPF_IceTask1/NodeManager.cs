@@ -35,6 +35,3 @@ namespace WPF_IceTask1
         }
     }
 }
-//dma overfull
-//check if it's working on his side - scanning image 
-//write out what you're doing and start figuring it out

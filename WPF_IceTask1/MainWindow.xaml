@@ -12,13 +12,13 @@
         <!--<ListBox x:Name="lboxSortedListDisplay" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="307,172,298,61"/>-->
         <Label x:Name="lblHeading" Content="Script reading" HorizontalAlignment="Left" Margin="328,40,0,0" VerticalAlignment="Top" Width="134"/>
         <Label x:Name="lblNumOfNodes" Content="Number of nodes:" HorizontalAlignment="Left" Margin="61,92,0,0" VerticalAlignment="Top" Width="129" Height="28"/>
-        <Label x:Name="lblUnsortedList" Content="Entire list" HorizontalAlignment="Left" Margin="182,136,0,0" VerticalAlignment="Top" Width="134"/>
+        <Label x:Name="lblUnsortedList" Content="Entire list" HorizontalAlignment="Left" Margin="196,136,0,0" VerticalAlignment="Top" Width="134"/>
         <!--<Label x:Name="lblSortedList" Content="Sorted list" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" Width="134"/>-->
         <Label x:Name="lbSingleNode" Content="Single node" HorizontalAlignment="Left" Margin="589,136,0,0" VerticalAlignment="Top" Width="134" />
-        <Button x:Name="btnPrevious" Content="Previous" HorizontalAlignment="Left" Margin="548,275,0,0" VerticalAlignment="Top" Click="btnPrevious_Click"/>
-        <TextBox x:Name="txtSingleNodeDisplay" Margin="548,172,36,187"  TextWrapping="Wrap" Text=""/>
+        <Button x:Name="btnPrevious" Content="Previous" HorizontalAlignment="Left" Margin="551,353,0,0" VerticalAlignment="Top" Click="btnPrevious_Click"/>
+        <TextBox x:Name="txtSingleNodeDisplay" Margin="548,172,36,86"  TextWrapping="Wrap" Text=""/>
 
-        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="724,275,0,0" VerticalAlignment="Top" Click="btnNext_Click"/>
+        <Button x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="727,353,0,0" VerticalAlignment="Top" Click="btnNext_Click"/>
         <Button x:Name="btnGetList" Content="Get" HorizontalAlignment="Left" Margin="94,378,0,0" VerticalAlignment="Top" Height="21" Width="63" Click="btnGetList_Click"/>
         <Button x:Name="btnSortList" Content="Sort" HorizontalAlignment="Left" Margin="373,378,0,0" VerticalAlignment="Top" Height="21" Width="63" Click="btnSortList_Click"/>
 
